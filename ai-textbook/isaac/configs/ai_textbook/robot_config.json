@@ -1,0 +1,31 @@
+{
+  "isaac": {
+    "default_app": {
+      "name": "ai_textbook_robot",
+      "title": "AI Textbook Robot Application",
+      "description": "Robot application for Physical AI & Humanoid Robotics Course",
+      "config": {
+        "isaac.navigation.NavigatorServer": {
+          "enabled": true,
+          "config": {
+            "default_move_until_distance": 0.5,
+            "default_linear_tolerance": 0.1,
+            "default_angular_tolerance": 0.1
+          }
+        },
+        "isaac.perception.Feature2D": {
+          "enabled": true,
+          "config": {
+            "feature_type": "SIFT",
+            "max_features": 500,
+            "octaves": 3,
+            "contrast_threshold": 0.04
+          }
+        },
+        "isaac.sight.Sight": {
+          "enabled": true
+        }
+      }
+    }
+  }
+}

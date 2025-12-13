@@ -1,0 +1,85 @@
+# VSLAM Configuration for Isaac Sim
+# Settings optimized for visual SLAM experiments
+
+app:
+  name: "VSLAM Experiment"
+  title: "Isaac Sim VSLAM Configuration"
+  fps_limit: 30  # Lower FPS for more realistic processing time
+
+physics:
+  solver_type: "TGS"
+  bounce_threshold: 2.0
+  enable_gpu_physics: true
+
+renderer:
+  resolution_width: 1280
+  resolution_height: 720
+  light_budget: 5000  # Reduced for performance
+  light_cache_scale: 2
+
+camera:
+  # Stereo camera setup for VSLAM
+  left_camera:
+    resolution_width: 640
+    resolution_height: 480
+    horizontal_fov: 60.0
+    position: [-0.1, 0.0, 0.0]  # 10cm baseline
+    rotation: [0.0, 0.0, 0.0]
+
+  right_camera:
+    resolution_width: 640
+    resolution_height: 480
+    horizontal_fov: 60.0
+    position: [0.1, 0.0, 0.0]   # 10cm baseline
+    rotation: [0.0, 0.0, 0.0]
+
+  # RGB-D camera for alternative VSLAM
+  rgbd_camera:
+    resolution_width: 640
+    resolution_height: 480
+    horizontal_fov: 60.0
+    enable_depth: true
+    depth_range: [0.1, 10.0]
+
+vslam:
+  # VSLAM-specific parameters
+  feature_detector: "ORB"
+  max_features: 1000
+  matching_threshold: 0.7
+  min_matches_for_tracking: 20
+  keyframe_selection_type: "distance_based"
+  keyframe_distance_threshold: 0.5
+  bundle_adjustment_enabled: true
+  loop_closure_detection: true
+  map_publish_frequency: 1.0
+  tracking_publish_frequency: 30.0
+
+ros_bridge:
+  enable_ros_bridge: true
+  ros_bridge_port: 8888
+  publish_frequency: 30.0  # Match camera rate
+  topics:
+    left_camera: "/stereo_camera/left/image_rect_color"
+    right_camera: "/stereo_camera/right/image_rect_color"
+    left_camera_info: "/stereo_camera/left/camera_info"
+    right_camera_info: "/stereo_camera/right/camera_info"
+    odom_topic: "/visual_slam/odometry"
+    map_topic: "/visual_slam/map"
+
+isaac_ros_extensions:
+  enabled_extensions:
+    - "omni.isaac.ros_bridge"
+    - "omni.isaac.range_sensor"
+    - "omni.isaac.vslam"
+    - "omni.isaac.perception"
+    - "omni.isaac.synthetic_utility"
+
+performance:
+  # Performance optimization for VSLAM
+  enable_texture_streaming: true
+  texture_resolution_limit: 1024
+  enable_scene_culling: true
+  max_lights_per_view: 8
+  enable_subsurface_scattering: false
+  enable_volume_scattering: false
+  enable_volume_emission: false

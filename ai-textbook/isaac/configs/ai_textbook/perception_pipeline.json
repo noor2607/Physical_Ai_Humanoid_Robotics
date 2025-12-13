@@ -1,0 +1,52 @@
+{
+  "components": [
+    {
+      "name": "ImageLoader",
+      "type": "isaac::ImageLoader",
+      "config": {
+        "tick_period": "100Hz",
+        "image_path": "data/images/sample_image.jpg"
+      }
+    },
+    {
+      "name": "ImageSaver",
+      "type": "isaac::ImageSaver",
+      "config": {
+        "tick_period": "10Hz",
+        "save_directory": "output/images/"
+      }
+    },
+    {
+      "name": "FeatureDetector",
+      "type": "isaac::Feature2D::SIFT",
+      "config": {
+        "max_features": 1000,
+        "octaves": 3,
+        "contrast_threshold": 0.04,
+        "edge_threshold": 10
+      }
+    },
+    {
+      "name": "PoseEstimator",
+      "type": "isaac::PoseEstimator",
+      "config": {
+        "algorithm": "EPnP",
+        "reprojection_error_threshold": 5.0
+      }
+    }
+  ],
+  "messages": [
+    {
+      "source": "ImageLoader/image",
+      "target": "FeatureDetector/image"
+    },
+    {
+      "source": "FeatureDetector/features",
+      "target": "PoseEstimator/features"
+    },
+    {
+      "source": "PoseEstimator/pose",
+      "target": "ImageSaver/pose"
+    }
+  ]
+}

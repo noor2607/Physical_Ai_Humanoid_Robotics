@@ -1,0 +1,164 @@
+# Isaac Sim Configuration for Physical AI & Humanoid Robotics Course
+# This configuration sets up Isaac Sim for AI-robotics integration experiments
+
+app:
+  # Application settings
+  name: "Physical AI Course Isaac Sim"
+  title: "Isaac Sim for Robotics AI Course"
+  fps_limit: 60
+  subframes: 1
+  enable_viewport_camera_teleport: true
+  enable_cameras: true
+
+physics:
+  # Physics engine settings
+  solver_type: "TGS"  # TGS or PGS
+  bounce_threshold: 2.0
+  friction_offset_threshold: 10.0
+  friction_correlation_distance: 0.025
+  gpu_max_rigid_contact_count: 524288
+  gpu_max_rigid_patch_count: 32768
+  gpu_max_particle_contacts: 1048576
+  gpu_heap_size: 67108864
+  gpu_temp_buffer_size: 67108864
+  gpu_max_prim_count: 1048576
+  gpu_max_body_count: 65536
+  gpu_max_shape_count: 65536
+  gpu_max_pair_count: 131072
+  gpu_max_contact_per_pair: 8
+  gpu_collision_stack_size: 67108864
+  gpu_found_lost_pairs_capacity: 131072
+  gpu_found_lost_shapes_capacity: 131072
+  gpu_update_pairs_capacity: 1048576
+  gpu_remove_pairs_capacity: 1048576
+  gpu_max_soft_body_contacts: 1048576
+  gpu_max_particle_contacts: 1048576
+  gpu_max_constraints: 131072
+  gpu_max_constraint_rows: 1048576
+  gpu_max_jacobian_entries: 2097152
+  gpu_raycast_buckets: 131072
+  gpu_raycast_size: 1048576
+  gpu_physics_frames: 1
+
+renderer:
+  # Renderer settings for photorealistic simulation
+  resolution_width: 1280
+  resolution_height: 720
+  light_budget: 10000
+  light_cache_scale: 4
+  enable_nsight_aftermath: false
+  enable_debug_layer: false
+  max_gpu_queue_wait_time: 10000
+
+window:
+  # Window settings
+  width: 1920
+  height: 1080
+  resizable: true
+  always_on_top: false
+  decorated: true
+
+viewport:
+  # Viewport camera settings
+  resolution_width: 1280
+  resolution_height: 720
+  grid_position: "top-left"
+  grid_color: [0.2, 0.2, 0.2]
+  axis_position: "bottom-right"
+  default_height: 1080
+  default_width: 1920
+
+physics_scene:
+  # Scene-specific physics settings
+  gravity: [0.0, 0.0, -9.81]
+  enable_ccd: true
+  enable_stabilization: true
+  enable_gpu_physics: true
+  gpu_max_particle_count: 1000000
+  gpu_max_soft_body_particles: 100000
+  gpu_max_diffuse_particles: 100000
+  gpu_max_anisotropy: 64
+  gpu_max_characters: 256
+
+camera:
+  # Camera settings for sensors
+  sensor_horizontal_fov: 60.0
+  sensor_resolution_width: 640
+  sensor_resolution_height: 480
+  enable_semantic_sensor: true
+  enable_depth_sensor: true
+  enable_rgb_sensor: true
+
+ros_bridge:
+  # ROS bridge configuration
+  enable_ros_bridge: true
+  ros_bridge_port: 8888
+  publish_frequency: 60.0
+  enable_tf_publishing: true
+  enable_clock_publishing: true
+  clock_publish_frequency: 60.0
+
+isaac_sim_extensions:
+  # Enabled extensions for the course
+  enabled_extensions:
+    - "omni.kit.viewport.utility"
+    - "omni.isaac.core"
+    - "omni.isaac.sensor"
+    - "omni.isaac.ros_bridge"
+    - "omni.isaac.ros2_bridge"
+    - "omni.isaac.range_sensor"
+    - "omni.isaac.motion_generation"
+    - "omni.isaac.navigation"
+    - "omni.isaac.manipulation"
+    - "omni.isaac.vslam"
+    - "omni.isaac.perception"
+    - "omni.isaac.synthetic_utility"
+    - "omni.isaac.irp"
+    - "omni.kit.widget.viewport"
+    - "omni.kit.window.viewport"
+    - "omni.kit.viewport.panels"
+    - "omni.kit.menu.utils"
+    - "omni.kit.window.file"
+    - "omni.kit.window.property"
+    - "omni.kit.property.usd"
+    - "omni.kit.property.templates"
+    - "omni.kit.property PhysXSchema"
+    - "omni.kit.viewport.utility"
+    - "omni.kit.widget.stage"
+    - "omni.kit.window.stage"
+    - "omni.kit.window.manager"
+    - "omni.kit.window.popup_dialog"
+    - "omni.kit.window.file"
+    - "omni.kit.window.toolbar"
+    - "omni.kit.window.stats"
+    - "omni.kit.window.console"
+    - "omni.kit.window.about"
+    - "omni.kit.window.help"
+    - "omni.kit.window.material"
+    - "omni.kit.window.material_graph"
+    - "omni.kit.window.content_browser"
+    - "omni.kit.window.renderer"
+    - "omni.kit.window.render_settings"
+    - "omni.kit.window.timeline"
+    - "omni.kit.window.animation"
+    - "omni.kit.window.animation_graph"
+    - "omni.kit.window.animation_timeline"
+    - "omni.kit.window.animation_clip"
+    - "omni.kit.window.animation_rig"
+    - "omni.kit.window.animation_state"
+    - "omni.kit.window.animation_state_machine"
+    - "omni.kit.window.animation_state_machine_editor"
+    - "omni.kit.window.animation_state_machine_viewer"
+    - "omni.kit.window.animation_state_machine_graph"
+    - "omni.kit.window.animation_state_machine_property"
+    - "omni.kit.window.animation_state_machine_toolbar"
+    - "omni.kit.window.animation_state_machine_menu"
+    - "omni.kit.window.animation_state_machine_context_menu"
+    - "omni.kit.window.animation_state_machine_drag_drop"
+    - "omni.kit.window.animation_state_machine_selection"
+    - "omni.kit.window.animation_state_machine_undo_redo"
+    - "omni.kit.window.animation_state_machine_copy_paste"
+    - "omni.kit.window.animation_state_machine_search"
+    - "omni.kit.window.animation_state_machine_preferences"
+    - "omni.kit.window.animation_state_machine_help"
+    - "omni.kit.window.animation_state_machine_about"

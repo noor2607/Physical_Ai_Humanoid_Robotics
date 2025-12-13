@@ -1,0 +1,8 @@
+{
+  "label": "Module 3: AI Integration with Isaac",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn to integrate AI algorithms with robotic systems using NVIDIA Isaac tools for perception, planning, and control in physical AI applications."
+  }
+}

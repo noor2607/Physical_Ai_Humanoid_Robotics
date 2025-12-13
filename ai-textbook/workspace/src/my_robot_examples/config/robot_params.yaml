@@ -1,0 +1,7 @@
+# File: ~/ai-textbook/workspace/src/my_robot_examples/config/robot_params.yaml
+/**:
+  ros__parameters:
+    linear_speed: 0.8
+    angular_speed: 1.5
+    safety_distance: 0.7
+    debug: false

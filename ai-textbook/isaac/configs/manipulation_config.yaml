@@ -1,0 +1,115 @@
+# Manipulation Configuration for Isaac Sim
+# Settings optimized for robot manipulation experiments
+
+app:
+  name: "Manipulation Experiment"
+  title: "Isaac Sim Manipulation Configuration"
+  fps_limit: 120  # Higher FPS for precise control
+  subframes: 2    # More subframes for accurate physics
+
+physics:
+  solver_type: "TGS"
+  bounce_threshold: 0.5  # Lower for better contact handling
+  friction_offset_threshold: 5.0
+  enable_gpu_physics: true
+  gpu_max_rigid_contact_count: 1048576  # Higher for manipulation
+  gpu_max_rigid_patch_count: 65536
+
+renderer:
+  resolution_width: 1920
+  resolution_height: 1080
+  light_budget: 8000
+  light_cache_scale: 3
+
+camera:
+  # Multiple cameras for manipulation view
+  main_camera:
+    resolution_width: 1280
+    resolution_height: 720
+    horizontal_fov: 45.0
+    position: [1.0, 0.0, 1.0]
+    rotation: [-15.0, 0.0, 0.0]
+
+  overhead_camera:
+    resolution_width: 1280
+    resolution_height: 720
+    horizontal_fov: 60.0
+    position: [0.0, 0.0, 1.5]
+    rotation: [-90.0, 0.0, 0.0]
+
+  wrist_camera:
+    resolution_width: 640
+    resolution_height: 480
+    horizontal_fov: 90.0
+    position: [0.0, 0.0, 0.0]  # Attached to end-effector
+    rotation: [0.0, 0.0, 0.0]
+
+manipulation:
+  # Manipulation-specific parameters
+  gripper_force_limit: 50.0
+  gripper_position_tolerance: 0.001
+  gripper_velocity_tolerance: 0.01
+  contact_detection_threshold: 0.1
+  grasp_quality_threshold: 0.7
+  max_grasp_attempts: 5
+
+robot:
+  # Robot-specific settings
+  control_frequency: 100.0  # 100Hz control loop
+  position_tolerance: 0.005  # 5mm accuracy
+  orientation_tolerance: 0.05  # 0.05 rad accuracy
+  joint_velocity_limits:
+    - 2.0  # Shoulder pan
+    - 2.0  # Shoulder lift
+    - 2.0  # Elbow
+    - 2.0  # Wrist 1
+    - 2.0  # Wrist 2
+    - 2.0  # Wrist 3
+  joint_effort_limits:
+    - 150.0
+    - 150.0
+    - 150.0
+    - 28.0
+    - 28.0
+    - 28.0
+
+ros_bridge:
+  enable_ros_bridge: true
+  ros_bridge_port: 8888
+  publish_frequency: 100.0  # Match control frequency
+  topics:
+    joint_states: "/joint_states"
+    cmd_vel: "/cmd_vel"
+    gripper_command: "/gripper/command"
+    camera_rgb: "/camera/rgb/image_raw"
+    camera_depth: "/camera/depth/image_raw"
+    camera_info: "/camera/rgb/camera_info"
+    pointcloud: "/camera/depth/points"
+
+isaac_ros_extensions:
+  enabled_extensions:
+    - "omni.isaac.ros_bridge"
+    - "omni.isaac.range_sensor"
+    - "omni.isaac.manipulation"
+    - "omni.isaac.perception"
+    - "omni.isaac.synthetic_utility"
+    - "omni.isaac.gym"
+    - "omni.isaac.motion_generation"
+
+objects:
+  # Object properties for manipulation
+  default_object_density: 1000.0  # kg/m^3 (water-like)
+  friction_range: [0.3, 0.8]      # Range of friction coefficients
+  restitution_range: [0.0, 0.2]   # Range of bounciness
+  mass_range: [0.05, 5.0]         # Range of object masses (kg)
+
+performance:
+  # Performance optimization for manipulation
+  enable_texture_streaming: true
+  texture_resolution_limit: 2048
+  enable_scene_culling: true
+  max_lights_per_view: 16
+  enable_subsurface_scattering: false
+  enable_volume_scattering: false
+  enable_volume_emission: false
+  cpu_core_limit: 12  # Limit CPU usage for real-time performance

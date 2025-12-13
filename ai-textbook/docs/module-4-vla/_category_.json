@@ -1,0 +1,8 @@
+{
+  "label": "Module 4: Voice-Controlled Robotics",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn to create voice-controlled robots that understand natural language commands and execute appropriate actions using Vision-Language-Action integration."
+  }
+}

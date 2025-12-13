@@ -1,0 +1,8 @@
+{
+  "label": "Module 2: Digital Twin (Gazebo & Unity)",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn to create realistic simulation environments with Gazebo physics and Unity visualization for testing robotic systems safely before physical deployment."
+  }
+}

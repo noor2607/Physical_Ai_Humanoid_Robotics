@@ -1,0 +1,85 @@
+# Validation Configuration for Physical AI & Humanoid Robotics Course
+validation:
+  timeout: 60  # seconds for each validation step
+  memory_limit: 2048  # MB maximum memory usage
+  cpu_limit: 80  # percentage maximum CPU usage
+  max_file_size: 50  # MB maximum file size for submissions
+
+modules:
+  ros2:
+    name: "ROS 2 Fundamentals"
+    weight: 25
+    validators:
+      - name: "package_structure"
+        weight: 40
+        description: "Validates ROS 2 package structure and build"
+      - name: "code_quality"
+        weight: 30
+        description: "Checks for ROS 2 best practices"
+      - name: "functionality"
+        weight: 30
+        description: "Tests basic ROS 2 functionality"
+
+  simulation:
+    name: "Simulation Environments"
+    weight: 25
+    validators:
+      - name: "world_model"
+        weight: 50
+        description: "Validates world and robot models"
+      - name: "physics_simulation"
+        weight: 35
+        description: "Checks physics simulation correctness"
+      - name: "visualization"
+        weight: 15
+        description: "Validates visualization components"
+
+  isaac:
+    name: "AI Integration with Isaac"
+    weight: 25
+    validators:
+      - name: "isaac_integration"
+        weight: 45
+        description: "Validates Isaac Sim integration"
+      - name: "perception_system"
+        weight: 30
+        description: "Checks perception and detection systems"
+      - name: "path_planning"
+        weight: 25
+        description: "Validates path planning algorithms"
+
+  voice_control:
+    name: "Voice-Controlled Robotics"
+    weight: 25
+    validators:
+      - name: "speech_recognition"
+        weight: 35
+        description: "Validates speech recognition components"
+      - name: "nlp_processing"
+        weight: 40
+        description: "Checks natural language processing"
+      - name: "action_mapping"
+        weight: 25
+        description: "Validates action mapping and execution"
+
+feedback:
+  positive_templates:
+    - "Great implementation of the required functionality!"
+    - "Your code follows best practices and is well-structured."
+    - "Excellent use of appropriate design patterns."
+    - "Clear and comprehensive implementation."
+
+  improvement_templates:
+    - "Consider adding more error handling for edge cases."
+    - "Documentation could be more detailed, especially for complex functions."
+    - "Code could be refactored to improve readability and maintainability."
+    - "Consider performance optimizations for better efficiency."
+    - "Add more comprehensive tests to ensure reliability."
+
+security:
+  enabled: true
+  checks:
+    - "file_integrity"
+    - "dependency_scan"
+    - "sandbox_execution"
+    - "resource_limits"
