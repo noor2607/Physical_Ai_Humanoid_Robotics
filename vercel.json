@@ -1,4 +1,4 @@
 {
-  "rootDirectory": "ai-textbook",
+  "buildCommand": "npm run build",
   "outputDirectory": "build"
 }
