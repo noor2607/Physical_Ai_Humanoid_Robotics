@@ -1,55 +1,59 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: N/A → 1.0.0
+- Modified principles: None (new constitution)
+- Added sections: All sections added
+- Removed sections: None
+- Templates requiring updates: ⚠ pending - .specify/templates/plan-template.md, .specify/templates/spec-template.md, .specify/templates/tasks-template.md
+- Follow-up TODOs: None
+-->
+
+# Physical AI & Humanoid Robotics Course Book Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Embodied Intelligence Focus
+All content and exercises must emphasize the integration of AI with physical systems. Every chapter and lab exercise should demonstrate how AI algorithms translate to real-world robotic behaviors and decision-making in physical environments.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Multi-Platform Technology Alignment
+Content must align with and teach ROS 2, Gazebo, Unity, NVIDIA Isaac, and LLM integration. All examples, tutorials, and exercises should be compatible across these platforms with clear guidance on platform-specific implementations and use cases.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Hands-On Accessibility Priority
+Every concept must be accompanied by practical, hands-on simulations and real-world robotics applications. Content should be accessible to students with varying lab setups, providing both advanced hardware requirements and simplified alternatives for broader accessibility.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Modular Learning Structure
+Course material should be organized in modular, self-contained units that can be combined flexibly. Each module must include theoretical foundations, practical implementation, and assessment components that build upon each other progressively.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Hardware-Aware Implementation
+All examples and exercises must account for realistic hardware constraints including RTX graphics cards, Jetson development kits, and various computational resources. Content should provide scalable implementations from cloud-based solutions to on-premise setups.
 
-### [PRINCIPLE_6_NAME]
+### Collaborative Learning Framework
+Course design must facilitate collaborative learning experiences including group projects, peer reviews, and shared experimentation. Content should include mechanisms for students to contribute, share, and build upon each other's work.
 
+## Constraints and Limitations
 
-[PRINCIPLE__DESCRIPTION]
+Hardware Requirements: The course must accommodate various hardware tiers from high-end RTX workstations to Jetson development kits. Cloud vs. on-premise setups should be supported with clear guidance on setup procedures. Budget-conscious implementations should be provided alongside advanced options to serve diverse institutional capabilities.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Technology Stack: All implementations must utilize ROS 2 for robot communication, Gazebo for physics simulation, Unity for visualization, NVIDIA Isaac for AI acceleration, and modern LLM integration for advanced robotics applications. Third-party dependencies should be minimized and well-justified.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+Performance Standards: Simulations and exercises must run efficiently on minimum hardware specifications. Resource usage guidelines should be established and maintained throughout all course materials.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Deliverables and Quality Standards
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Structured Content: The book must include comprehensive chapters with clear learning objectives, theoretical foundations, practical exercises, and capstone project guidance. Each chapter should follow a consistent format with integrated lab exercises.
+
+Interactive Website: A Docusaurus-powered website must provide searchable documentation, video tutorials, downloadable resources, and community forums for student collaboration and instructor support.
+
+Laboratory Exercises: Each chapter must include 3-5 hands-on lab exercises ranging from basic simulation tasks to complex real-world robotics challenges. Exercises should scale from beginner to advanced proficiency levels.
+
+Capstone Projects: End-of-course projects should integrate multiple concepts and provide pathways for individual creativity while meeting core competency requirements.
+
+Review Process: All content must undergo versioning control, specification adherence verification, and peer/instructor review before publication. Quality gates include technical accuracy verification, pedagogical effectiveness assessment, and accessibility compliance checks.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution establishes the foundational principles for the Physical AI & Humanoid Robotics Course Book project. All development activities, content creation, and quality assurance processes must align with these principles. Any proposed changes to core principles require formal amendment procedures including stakeholder consultation, impact assessment, and approval from the project leadership team.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+All contributions must verify compliance with hardware accessibility, technology alignment, and educational effectiveness standards. Content complexity must be justified with clear pedagogical benefits and student outcome measurements.
+
+**Version**: 1.0.0 | **Ratified**: 2025-12-13 | **Last Amended**: 2025-12-13

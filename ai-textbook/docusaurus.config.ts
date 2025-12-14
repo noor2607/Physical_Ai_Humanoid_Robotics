@@ -152,7 +152,7 @@ const config: Config = {
             },
             {
               label: 'Simulations',
-              to: '/docs/category/simulations',
+              to: '/docs/module-2-simulation',
             },
             {
               label: 'API Reference',
