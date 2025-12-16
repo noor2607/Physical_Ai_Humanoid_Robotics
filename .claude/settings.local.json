@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command \".specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks\")",
+      "Bash(dir \"specs/001-physical-ai-book/checklists\")",
+      "Bash(git rev-parse --git-dir)",
+      "Bash(mkdir -p exercises/module-1 exercises/module-2 exercises/module-3 exercises/module-4)",
+      "Bash(dir \"D:\\hackthone_1\\ai-textbook\" /B)",
+      "Bash(dir \"D:\\hackthone_1\\ai-textbook\\specs\" /B)"
+    ]
+  }
+}

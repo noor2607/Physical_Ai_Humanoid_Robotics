@@ -1,0 +1,95 @@
+# Unity Scene Configuration: Warehouse Navigation
+
+## Scene Overview
+This scene provides a 3D visualization of a warehouse environment with a mobile robot equipped with sensors. The scene connects to ROS 2 topics to visualize sensor data and robot position in real-time.
+
+## Robot Setup
+- Robot prefab: sensor_robot.prefab
+- Position: (0, 0, 0)
+- Rotation: (0, 0, 0, 1)
+
+## Environment Setup
+- Ground plane: 20x20 units
+- Obstacles: Shelf units, pallets, charging stations
+- Lighting: Point lights at ceiling level
+- Materials: Realistic textures for warehouse environment
+
+## Sensor Visualization Components
+
+### LiDAR Visualization
+- Topic: /scan
+- Component: LaserScanVisualizer.cs
+- Parameters:
+  - Max range: 30.0
+  - Color: Green
+  - Point size: 0.05
+
+### Camera Visualization
+- Topic: /camera/image_raw
+- Component: CameraVisualizer.cs
+- Parameters:
+  - Resolution: 640x480
+  - Display: On-screen texture
+
+### IMU Visualization
+- Topic: /imu
+- Component: IMUVisualizer.cs
+  - Orientation indicator
+  - Acceleration vectors
+
+### Odometry Visualization
+- Topic: /odom
+- Component: RobotPathVisualizer.cs
+- Parameters:
+  - Trail length: 100 points
+  - Trail color: Blue
+
+## UI Elements
+- Robot status panel (battery, speed, mode)
+- Sensor data display
+- Navigation controls
+- Waypoint markers
+- Emergency stop button
+
+## ROS Connection Settings
+- IP Address: 127.0.0.1
+- Port: 10000
+- Message types: geometry_msgs/Twist, sensor_msgs/LaserScan, nav_msgs/Odometry
+
+## Performance Settings
+- Target frame rate: 60 FPS
+- LOD bias: 1.0
+- Shadow resolution: Medium
+- Anti-aliasing: 2x MSAA
+
+## Scene Behaviors
+- Robot movement responds to cmd_vel topic
+- Sensor data updates in real-time
+- Collision detection with environment
+- Path recording and visualization
+
+## Required Assets
+- Robot 3D models
+- Environment textures
+- UI elements
+- ROS TCP connector scripts
+- Visualization components
+
+## Scene Hierarchy
+- Robot (sensor_robot prefab)
+  - Base
+  - Wheels
+  - Sensors
+- Environment
+  - Ground
+  - Shelves
+  - Obstacles
+- Lighting
+  - Directional light
+  - Point lights
+- UI
+  - Canvas
+  - Robot status
+  - Sensor displays
+- ROS Connection Manager
+- Visualization Manager

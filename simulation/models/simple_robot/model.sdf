@@ -1,0 +1,201 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <model name="simple_robot">
+    <!-- Base link -->
+    <link name="base_link">
+      <pose>0 0 0.1 0 0 0</pose>
+      <inertial>
+        <mass>1.0</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.15</radius>
+            <length>0.2</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.15</radius>
+            <length>0.2</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.2 0.8 0.2 1</ambient>
+          <diffuse>0.2 0.8 0.2 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Left wheel -->
+    <link name="left_wheel">
+      <pose>-0.05 0.15 0 0 1.5707 0</pose>
+      <inertial>
+        <mass>0.2</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>0.05</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>0.05</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.3 0.3 0.3 1</ambient>
+          <diffuse>0.3 0.3 0.3 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Right wheel -->
+    <link name="right_wheel">
+      <pose>-0.05 -0.15 0 0 1.5707 0</pose>
+      <inertial>
+        <mass>0.2</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>0.05</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>0.05</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.3 0.3 0.3 1</ambient>
+          <diffuse>0.3 0.3 0.3 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <!-- caster wheel -->
+    <link name="caster_wheel">
+      <pose>0.1 0 0 0 0 0</pose>
+      <inertial>
+        <mass>0.05</mass>
+        <inertia>
+          <ixx>0.0001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0001</iyy>
+          <iyz>0</iyz>
+          <izz>0.0001</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="collision">
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>0.5 0.5 0.5 1</ambient>
+          <diffuse>0.5 0.5 0.5 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Joints -->
+    <joint name="left_wheel_joint" type="continuous">
+      <parent>base_link</parent>
+      <child>left_wheel</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <effort>100</effort>
+          <velocity>100</velocity>
+        </limit>
+      </axis>
+    </joint>
+
+    <joint name="right_wheel_joint" type="continuous">
+      <parent>base_link</parent>
+      <child>right_wheel</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <effort>100</effort>
+          <velocity>100</velocity>
+        </limit>
+      </axis>
+    </joint>
+
+    <joint name="caster_wheel_joint" type="ball">
+      <parent>base_link</parent>
+      <child>caster_wheel</child>
+    </joint>
+
+    <!-- Differential drive plugin -->
+    <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+      <wheel_separation>0.3</wheel_separation>
+      <wheel_diameter>0.1</wheel_diameter>
+      <max_wheel_torque>20</max_wheel_torque>
+      <max_wheel_acceleration>1.0</max_wheel_acceleration>
+      <command_topic>cmd_vel</command_topic>
+      <odometry_topic>odom</odometry_topic>
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <publish_wheel_tf>true</publish_wheel_tf>
+    </plugin>
+  </model>
+</sdf>

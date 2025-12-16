@@ -1,0 +1,401 @@
+openapi: 3.0.0
+info:
+  title: Physical AI & Humanoid Robotics Course Platform API
+  description: API for the educational platform supporting the Physical AI & Humanoid Robotics course
+  version: 1.0.0
+servers:
+  - url: https://api.physical-ai-course.com/v1
+    description: Production server
+  - url: https://staging-api.physical-ai-course.com/v1
+    description: Staging server
+
+paths:
+  /modules:
+    get:
+      summary: List all course modules
+      description: Retrieve a list of all course modules with their details
+      responses:
+        '200':
+          description: A list of course modules
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Module'
+
+  /modules/{moduleId}:
+    get:
+      summary: Get module details
+      description: Retrieve detailed information about a specific module
+      parameters:
+        - name: moduleId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the module
+      responses:
+        '200':
+          description: Module details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Module'
+        '404':
+          description: Module not found
+
+  /chapters:
+    get:
+      summary: List all chapters
+      description: Retrieve a list of all chapters across all modules
+      responses:
+        '200':
+          description: A list of chapters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Chapter'
+
+  /chapters/{chapterId}:
+    get:
+      summary: Get chapter details
+      description: Retrieve detailed information about a specific chapter
+      parameters:
+        - name: chapterId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the chapter
+      responses:
+        '200':
+          description: Chapter details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+        '404':
+          description: Chapter not found
+
+  /exercises:
+    get:
+      summary: List all lab exercises
+      description: Retrieve a list of all lab exercises with filtering options
+      parameters:
+        - name: moduleId
+          in: query
+          schema:
+            type: string
+          description: Filter exercises by module
+        - name: chapterId
+          in: query
+          schema:
+            type: string
+          description: Filter exercises by chapter
+        - name: difficulty
+          in: query
+          schema:
+            type: string
+            enum: [beginner, intermediate, advanced]
+          description: Filter exercises by difficulty level
+      responses:
+        '200':
+          description: A list of lab exercises
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LabExercise'
+
+  /exercises/{exerciseId}/validate:
+    post:
+      summary: Validate exercise completion
+      description: Submit an exercise for validation and get feedback
+      parameters:
+        - name: exerciseId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the exercise
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExerciseSubmission'
+      responses:
+        '200':
+          description: Validation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResult'
+        '400':
+          description: Invalid submission
+        '404':
+          description: Exercise not found
+
+  /students/{studentId}/progress:
+    get:
+      summary: Get student progress
+      description: Retrieve progress information for a specific student
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the student
+      responses:
+        '200':
+          description: Student progress information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentProgress'
+        '404':
+          description: Student not found
+
+components:
+  schemas:
+    Module:
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - duration
+        - learning_objectives
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the module
+        name:
+          type: string
+          description: Name of the module
+        description:
+          type: string
+          description: Detailed description of the module
+        duration:
+          type: integer
+          description: Duration of the module in weeks
+        learning_objectives:
+          type: array
+          items:
+            type: string
+          description: List of learning objectives for the module
+        chapters:
+          type: array
+          items:
+            type: string
+          description: IDs of chapters in this module
+        prerequisites:
+          type: array
+          items:
+            type: string
+          description: Prerequisites for this module
+
+    Chapter:
+      type: object
+      required:
+        - id
+        - title
+        - moduleId
+        - content
+        - learning_objectives
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the chapter
+        title:
+          type: string
+          description: Title of the chapter
+        moduleId:
+          type: string
+          description: ID of the parent module
+        content:
+          type: string
+          description: Detailed chapter content
+        learning_objectives:
+          type: array
+          items:
+            type: string
+          description: Learning objectives for this chapter
+        activities:
+          type: array
+          items:
+            type: string
+          description: Activities and exercises in the chapter
+        code_examples:
+          type: array
+          items:
+            type: string
+          description: IDs of code examples in the chapter
+        lab_exercises:
+          type: array
+          items:
+            type: string
+          description: IDs of lab exercises associated with the chapter
+
+    LabExercise:
+      type: object
+      required:
+        - id
+        - title
+        - moduleId
+        - chapterId
+        - description
+        - difficulty
+        - estimated_time
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the exercise
+        title:
+          type: string
+          description: Title of the lab exercise
+        moduleId:
+          type: string
+          description: ID of the parent module
+        chapterId:
+          type: string
+          description: ID of the parent chapter
+        description:
+          type: string
+          description: Detailed description of the exercise
+        difficulty:
+          type: string
+          enum: [beginner, intermediate, advanced]
+          description: Difficulty level of the exercise
+        estimated_time:
+          type: integer
+          description: Estimated completion time in minutes
+        requirements:
+          type: array
+          items:
+            type: string
+          description: Hardware/software requirements
+        instructions:
+          type: string
+          description: Step-by-step instructions
+        solution:
+          type: string
+          description: Solution guide
+        validation_criteria:
+          type: array
+          items:
+            type: string
+          description: Criteria for validating completion
+
+    ExerciseSubmission:
+      type: object
+      required:
+        - studentId
+        - submission
+      properties:
+        studentId:
+          type: string
+          description: ID of the submitting student
+        submission:
+          type: object
+          description: The actual submission data (code, configuration, etc.)
+        metadata:
+          type: object
+          description: Additional metadata about the submission
+
+    ValidationResult:
+      type: object
+      required:
+        - exerciseId
+        - studentId
+        - passed
+        - feedback
+      properties:
+        exerciseId:
+          type: string
+          description: ID of the exercise being validated
+        studentId:
+          type: string
+          description: ID of the student submitting
+        passed:
+          type: boolean
+          description: Whether the submission passed validation
+        feedback:
+          type: string
+          description: Feedback about the submission
+        score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Numerical score for the submission
+        validation_details:
+          type: array
+          items:
+            type: string
+          description: Detailed validation results
+
+    StudentProgress:
+      type: object
+      required:
+        - studentId
+        - modules_progress
+      properties:
+        studentId:
+          type: string
+          description: Unique identifier for the student
+        modules_progress:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModuleProgress'
+        lab_exercises_completed:
+          type: array
+          items:
+            type: string
+          description: IDs of completed lab exercises
+        assessments_completed:
+          type: array
+          items:
+            type: string
+          description: IDs of completed assessments
+        overall_completion:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Overall course completion percentage
+
+    ModuleProgress:
+      type: object
+      required:
+        - moduleId
+        - completion_percentage
+        - status
+      properties:
+        moduleId:
+          type: string
+          description: ID of the module
+        completion_percentage:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Completion percentage for the module
+        status:
+          type: string
+          enum: [not_started, in_progress, completed]
+          description: Current status of the module
+        last_accessed:
+          type: string
+          format: date-time
+          description: Date when the module was last accessed
+        lab_exercises_completed:
+          type: array
+          items:
+            type: string
+          description: IDs of completed lab exercises in this module

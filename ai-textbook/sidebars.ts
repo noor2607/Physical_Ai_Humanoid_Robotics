@@ -21,7 +21,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Introduction',
-      items: ['intro'],
+      items: ['introduction'],
       collapsed: false,
     },
     {

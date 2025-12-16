@@ -1,0 +1,302 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="simple_office">
+    <!-- Include default environment elements -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Walls -->
+    <model name="wall_1">
+      <pose>0 5 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>10 0.2 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>10 0.2 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_2">
+      <pose>5 0 1 0 0 1.5707</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>10 0.2 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>10 0.2 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_3">
+      <pose>0 -5 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>10 0.2 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>10 0.2 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_4">
+      <pose>-5 0 1 0 0 1.5707</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>10 0.2 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>10 0.2 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Furniture: Table -->
+    <model name="table">
+      <pose>2 2 0.5 0 0 0</pose>
+      <link name="table_top">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.5 0.8 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.5 0.8 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.4 0.2 1</ambient>
+            <diffuse>0.6 0.4 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <link name="leg_1">
+        <pose>-0.6 -0.35 0 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.9</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.9</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.3 0.2 0.1 1</ambient>
+            <diffuse>0.3 0.2 0.1 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <link name="leg_2">
+        <pose>-0.6 0.35 0 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.9</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.9</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.3 0.2 0.1 1</ambient>
+            <diffuse>0.3 0.2 0.1 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <link name="leg_3">
+        <pose>0.6 -0.35 0 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.9</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.9</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.3 0.2 0.1 1</ambient>
+            <diffuse>0.3 0.2 0.1 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <link name="leg_4">
+        <pose>0.6 0.35 0 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.9</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.9</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.3 0.2 0.1 1</ambient>
+            <diffuse>0.3 0.2 0.1 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="table_top_to_leg_1" type="fixed">
+        <parent>table_top</parent>
+        <child>leg_1</child>
+      </joint>
+      <joint name="table_top_to_leg_2" type="fixed">
+        <parent>table_top</parent>
+        <child>leg_2</child>
+      </joint>
+      <joint name="table_top_to_leg_3" type="fixed">
+        <parent>table_top</parent>
+        <child>leg_3</child>
+      </joint>
+      <joint name="table_top_to_leg_4" type="fixed">
+        <parent>table_top</parent>
+        <child>leg_4</child>
+      </joint>
+    </model>
+
+    <!-- Obstacles: Boxes -->
+    <model name="obstacle_1">
+      <pose>-3 -2 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Navigation goal marker -->
+    <model name="goal_marker">
+      <pose>4 4 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.3</radius>
+              <length>0.1</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.3</radius>
+              <length>0.1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 1 0 0.5</ambient>
+            <diffuse>0 1 0 0.5</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Physics configuration -->
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+      <gravity>0 0 -9.8</gravity>
+    </physics>
+  </world>
+</sdf>

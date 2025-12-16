@@ -47,21 +47,6 @@ const config: Config = {
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
           sidebarCollapsible: true,
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -111,7 +96,6 @@ const config: Config = {
             },
           ],
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/physical-ai-course/physical-ai-humanoid-course',
           label: 'GitHub',
@@ -157,57 +141,6 @@ const config: Config = {
             {
               label: 'API Reference',
               to: '/docs/api-reference',
-            },
-          ],
-        },
-        {
-          title: 'Accessibility',
-          items: [
-            {
-              label: 'Accessibility Statement',
-              to: '/docs/accessibility',
-            },
-            {
-              label: 'Screen Reader Guide',
-              to: '/docs/screen-reader-guide',
-            },
-            {
-              label: 'Keyboard Navigation',
-              to: '/docs/keyboard-navigation',
-            },
-          ],
-        },
-        {
-          title: 'Collaboration',
-          items: [
-            {
-              label: 'Collaborative Learning',
-              to: '/docs/collaborative-learning',
-            },
-            {
-              label: 'Discussion Forums',
-              href: 'https://discord.gg/physical-ai',
-            },
-            {
-              label: 'Peer Review System',
-              to: '/docs/collaborative-learning#peer-review-system',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Discord',
-              href: 'https://discord.gg/physical-ai',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/physical-ai-course/physical-ai-humanoid-course',
-            },
-            {
-              label: 'Documentation',
-              href: 'https://docs.physical-ai-course.com',
             },
           ],
         },
