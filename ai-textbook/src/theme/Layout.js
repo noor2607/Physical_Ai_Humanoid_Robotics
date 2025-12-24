@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '@theme-original/Layout';
 import SkipToContent from '@site/src/components/SkipToContent';
+import FloatingChat from '@site/src/components/FloatingChat';
 
 export default function LayoutWrapper(props) {
   return (
@@ -11,6 +12,7 @@ export default function LayoutWrapper(props) {
           {props.children}
         </main>
       </Layout>
+      <FloatingChat />
     </>
   );
 }

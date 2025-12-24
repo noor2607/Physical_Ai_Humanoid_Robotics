@@ -152,6 +152,26 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+
 };
 
-export default config;
+// Development server configuration for API proxying (only used during development)
+const devServerConfig = {
+  devServer: {
+    proxy: {
+      '/chat': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/health': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
+};
+
+// Export the main config with devServer only for development
+export default process.env.NODE_ENV === 'development' ? { ...config, ...devServerConfig } : config;

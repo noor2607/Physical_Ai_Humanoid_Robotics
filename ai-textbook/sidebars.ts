@@ -92,25 +92,6 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Accessibility',
-      items: [
-        'accessibility',
-        'screen-reader-guide',
-        'keyboard-navigation',
-      ],
-      collapsed: true,
-    },
-    {
-      type: 'category',
-      label: 'Collaborative Learning',
-      items: [
-        'collaborative-learning',
-        'peer-review-template',
-      ],
-      collapsed: true,
-    },
-    {
-      type: 'category',
       label: 'Capstone Project',
       items: [
         'capstone-integration-guide',
@@ -119,105 +100,9 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Validation Tools',
-      items: [
-        'automated-validation-tools',
-      ],
-      collapsed: true,
-    },
-    {
-      type: 'category',
       label: 'Performance Optimization',
       items: [
         'performance-optimization',
-      ],
-      collapsed: true,
-    },
-    {
-      type: 'category',
-      label: 'Progress Tracking',
-      items: [
-        'progress-tracking-analytics',
-      ],
-      collapsed: true,
-    },
-    {
-      type: 'category',
-      label: 'Cloud & Backup Solutions',
-      items: [
-        'cloud-backup-alternatives',
-      ],
-      collapsed: true,
-    },
-    {
-      type: 'category',
-      label: 'Security & Privacy',
-      items: [
-        'security-privacy-llm',
-      ],
-      collapsed: true,
-    },
-    {
-      type: 'category',
-      label: 'Deployment Guides',
-      items: [
-        'deployment-institutional',
-      ],
-      collapsed: true,
-    },
-    {
-      type: 'category',
-      label: 'Peer Testing & Review',
-      items: [
-        'peer-testing-review',
-      ],
-      collapsed: true,
-    },
-    {
-      type: 'category',
-      label: 'Course Evaluation & Feedback',
-      items: [
-        'course-evaluation-feedback',
-      ],
-      collapsed: true,
-    },
-    {
-      type: 'category',
-      label: 'Automated Pipelines',
-      items: [
-        'automated-pipelines',
-      ],
-      collapsed: true,
-    },
-    {
-      type: 'category',
-      label: 'Instructor & TA Resources',
-      items: [
-        'instructor-ta-documentation',
-      ],
-      collapsed: true,
-    },
-    {
-      type: 'category',
-      label: 'Quality Assurance',
-      items: [
-        'quality-assurance-processes',
-      ],
-      collapsed: true,
-    },
-    {
-      type: 'category',
-      label: 'Capstone Showcase',
-      items: [
-        'capstone-showcase-templates',
-      ],
-      collapsed: true,
-    },
-    {
-      type: 'category',
-      label: 'Final Validation',
-      items: [
-        'final-course-validation',
       ],
       collapsed: true,
     },
