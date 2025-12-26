@@ -58,7 +58,8 @@
       "Bash(python -c \"from main import run_server; print\\(''Server import successful''\\)\")",
       "Bash(python -c \"from main import app; print\\(''Backend imported successfully''\\)\")",
       "Bash(uvicorn main:app --host 0.0.0.0 --port 8000)",
-      "Bash(python ingest_textbook_gemini.py)"
+      "Bash(python ingest_textbook_gemini.py)",
+      "Bash(python test_ingestion_components.py)"
     ]
   }
 }

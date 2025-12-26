@@ -60,10 +60,10 @@ export const sendChatQuery = async (
 
     // Transform backend response to match frontend expectations
     const transformedResponse: ChatResponse = {
-      response: data.answer, // Backend returns 'answer' field, not 'response'
-      success: true, // Assume success if no error was thrown
+      response: data.answer || data.response, // Backend returns 'answer' field, not 'response'
+      success: data.success ?? true, // Use success field from backend or assume success
       error: undefined,
-      sources: [], // Backend doesn't return sources directly
+      sources: data.sources || [], // Use sources from backend if available
       sessionId: sessionId
     };
 

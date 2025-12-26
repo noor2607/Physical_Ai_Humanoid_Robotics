@@ -1,0 +1,352 @@
+openapi: 3.0.0
+info:
+  title: AI Textbook RAG Chatbot API
+  description: API for the RAG-based AI chatbot system that ingests documentation and provides intelligent answers
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000/api/v1
+    description: Local development server
+  - url: https://api.example.com/v1
+    description: Production server
+
+paths:
+  /ingest:
+    post:
+      summary: Trigger documentation ingestion from sitemap
+      description: Fetches and processes all documentation pages from the specified sitemap
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sitemap_url:
+                  type: string
+                  format: uri
+                  description: URL of the sitemap.xml to process
+                  example: "https://physical-ai-humanoid-robotics-tan-ten.vercel.app/sitemap.xml"
+                force_refresh:
+                  type: boolean
+                  description: Whether to force re-processing of all pages even if unchanged
+                  default: false
+              required:
+                - sitemap_url
+      responses:
+        '200':
+          description: Ingestion process started successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [success, error]
+                    example: "success"
+                  job_id:
+                    type: string
+                    description: Unique identifier for the ingestion job
+                    example: "ingest-12345"
+                  pages_processed:
+                    type: integer
+                    description: Number of pages successfully processed
+                    example: 150
+                  pages_failed:
+                    type: integer
+                    description: Number of pages that failed to process
+                    example: 2
+                  processing_time:
+                    type: string
+                    description: Time taken to process the sitemap
+                    example: "2.5 minutes"
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid sitemap URL"
+        '500':
+          description: Server error during ingestion
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Failed to process sitemap"
+
+  /query:
+    post:
+      summary: Submit a query to the RAG system
+      description: Submit a user query and receive an AI-generated response based on documentation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: The user's question or query
+                  example: "How do I set up ROS 2 for my robot?"
+                session_id:
+                  type: string
+                  description: Session identifier for maintaining conversation context
+                  example: "session-123"
+              required:
+                - query
+      responses:
+        '200':
+          description: Query processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  query_id:
+                    type: string
+                    description: Unique identifier for this query
+                    example: "query-456"
+                  answer:
+                    type: string
+                    description: AI-generated answer based on documentation
+                    example: "To set up ROS 2 for your robot, first install the appropriate distribution..."
+                  sources:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          format: uri
+                          example: "https://example.com/ros-setup"
+                        title:
+                          type: string
+                          example: "ROS 2 Setup Guide"
+                        relevance_score:
+                          type: number
+                          format: float
+                          minimum: 0.0
+                          maximum: 1.0
+                          example: 0.85
+                  confidence:
+                    type: number
+                    format: float
+                    minimum: 0.0
+                    maximum: 1.0
+                    description: Confidence score for the response
+                    example: 0.92
+        '400':
+          description: Invalid query parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Query cannot be empty"
+        '500':
+          description: Server error during query processing
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Failed to process query"
+
+  /status:
+    get:
+      summary: Get system status
+      description: Retrieve the current status of the RAG system
+      responses:
+        '200':
+          description: System status retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [ready, processing, error]
+                    example: "ready"
+                  indexed_documents:
+                    type: integer
+                    description: Number of documents currently indexed
+                    example: 150
+                  last_ingestion:
+                    type: string
+                    format: date-time
+                    description: Timestamp of last successful ingestion
+                    example: "2025-12-25T10:30:00Z"
+                  qdrant_status:
+                    type: string
+                    enum: [connected, disconnected, error]
+                    example: "connected"
+                  model_status:
+                    type: string
+                    enum: [ready, unavailable]
+                    example: "ready"
+
+  /sessions/{session_id}:
+    get:
+      summary: Get session details
+      description: Retrieve details about a specific session including query history
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the session
+      responses:
+        '200':
+          description: Session details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  session_id:
+                    type: string
+                    example: "session-123"
+                  created_at:
+                    type: string
+                    format: date-time
+                    example: "2025-12-25T09:00:00Z"
+                  last_activity:
+                    type: string
+                    format: date-time
+                    example: "2025-12-25T10:30:00Z"
+                  query_count:
+                    type: integer
+                    example: 5
+                  queries:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        query:
+                          type: string
+                          example: "How do I install ROS 2?"
+                        response:
+                          type: string
+                          example: "To install ROS 2..."
+                        timestamp:
+                          type: string
+                          format: date-time
+                          example: "2025-12-25T10:25:00Z"
+        '404':
+          description: Session not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Session not found"
+
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Simple health check to verify the service is running
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-12-25T10:30:00Z"
+        '503':
+          description: Service is unhealthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "unhealthy"
+
+components:
+  schemas:
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the document
+        url:
+          type: string
+          format: uri
+          description: Source URL of the documentation page
+        title:
+          type: string
+          description: Title of the documentation page
+        content:
+          type: string
+          description: Extracted text content (possibly truncated)
+        created_at:
+          type: string
+          format: date-time
+          description: When the document was indexed
+        updated_at:
+          type: string
+          format: date-time
+          description: When the document was last updated
+
+    QueryResult:
+      type: object
+      properties:
+        query_id:
+          type: string
+          description: Unique identifier for this query
+        answer:
+          type: string
+          description: AI-generated answer based on documentation
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Source'
+        confidence:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Confidence score for the response
+
+    Source:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL of the source documentation
+        title:
+          type: string
+          description: Title of the source documentation
+        relevance_score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Relevance score of this source to the query
